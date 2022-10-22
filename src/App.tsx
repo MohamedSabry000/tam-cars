@@ -32,10 +32,11 @@ function App() {
         <Sidebar />
         <Box className={`flex-grow-1 ${mr} h-full`}>
           <Navbar />
-          <div className="bg-gray-50 dark:bg-gray-900 h-full p-4">
+          <div className="bg-gray-300 dark:bg-gray-900 h-full p-4">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/cars" element={<Cars />} />
+              <Route path="/cars/search/:search" element={<Cars />} />
             </Routes>
           </div>
         </Box>

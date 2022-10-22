@@ -1,0 +1,23 @@
+name: mocki
+port: 5000
+endpoints:
+
+- path: /recommendations
+  method: get
+  responses: - statusCode: 200
+  body:
+  [
+    {percentage: 64, car: "car", title: "Mini Cooper", buyNumber: 132, rent: 32, bgColor: "#E1DFA4"},
+    {percentage: 74, car: "car", title: "Porsche 911 Carrera", buyNumber: 130, rent: 28, bgColor: "#E3ECF1"},
+    {percentage: 74, car: "car", title: "Porsche 911 Carrera", buyNumber: 130, rent: 28, bgColor: "#F4E3E5"}
+  ]
+
+- path: /cars
+  method: get
+  responses: - statusCode: 200
+  body:
+  [
+    {percentage: 64, car: "car", title: "Mini Cooper", buyNumber: 132, rent: 32, bgColor: "#E1DFA4"},
+    {percentage: 74, car: "car", title: "Porsche 911 Carrera", buyNumber: 130, rent: 28, bgColor: "#E3ECF1"},
+    {percentage: 74, car: "car", title: "Porsche 911 Carrera", buyNumber: 130, rent: 28, bgColor: "#F4E3E5"}
+  ]
