@@ -10,6 +10,7 @@ import {
   Home,
 } from './pages';
 import Cars from './pages/Cars';
+import Lang from './utils/Lang';
 
 function App() {
   const [mr, setMr] = useState("ml-64");
@@ -27,6 +28,7 @@ function App() {
 
   return (
     <BrowserRouter>
+    <Lang />
     <Box>
       <div className="d-flex flex-column flex-md-row">
         <Sidebar />

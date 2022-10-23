@@ -5,29 +5,23 @@ import Arrange1Icon from '../assets/arrange1.png'
 import FilterIcon from '../assets/filter.png'
 import { Link, useParams } from 'react-router-dom'
 
-const cars = [
-  {title: "Porshe 718 Cayman S", size: "Coupe", type: "Manual", riderNums: 4, rent: 400, image: "https://i.ibb.co/NKBZsTk/car.png"},
-  {title: "Porshe 718 Cayman S", size: "Coupe", type: "Manual", riderNums: 4, rent: 400, image: "https://i.ibb.co/NKBZsTk/car.png"},
-  {title: "Porshe 718 Cayman S", size: "Coupe", type: "Manual", riderNums: 4, rent: 400, image: "https://i.ibb.co/NKBZsTk/car.png"},
-  {title: "Porshe 718 Cayman S", size: "Coupe", type: "Manual", riderNums: 4, rent: 400, image: "https://i.ibb.co/NKBZsTk/car.png"},
-  {title: "Porshe 718 Cayman S", size: "Coupe", type: "Manual", riderNums: 4, rent: 400, image: "https://i.ibb.co/NKBZsTk/car.png"},
-]
-
 function Cars() {
-  const [data, setData] = useState(cars)
+  const [data, setData] = useState([])
   const [show1, setShow1] = useState(false)
   const [show2, setShow2] = useState(false)
 
-  const search = useParams()
+  const {search} = useParams()
 
   useEffect(() => {
-    carApi.get('/cars').then(res => {
-
-    if(search)
-      setData(res.data.filter((item: any) => item.title.includes(search)))
+    carApi.get('cars').then(res => {
+      if(search){
+        setData(res.data.filter((item: any) => item.title.toLowerCase().includes(search.toLowerCase())))
+      }
+      else
+        setData(res.data)
     })
 
-  }, [])
+  }, [search])
   return (
     <div className='h-full'>
       <h1 className="font-bold text-3xl">Booking</h1>
@@ -43,7 +37,7 @@ function Cars() {
                 onClick={_=> setShow1(prev => !prev)}
               >
                 New
-                <svg className="ml-4 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                <svg className="ml-4 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
               </button>
               <div id="newBtn" className="absolute top-11 left-3 z-10 w-48 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
                 style={{display: show1&&!show2? 'block': 'none'}}
@@ -63,12 +57,12 @@ function Cars() {
               >
                 <span className="sr-only">Open user menu</span>
                 Bonnie Green
-                <svg className="ml-4 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                <svg className="ml-4 w-4 h-4" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
               </button>
 
               <div
                 id="dropdownAvatarName"
-                className="top-11 left-3 z-10 w-44 absolute bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+                className="top-11 left-3 z-10 w-44 absolute z-10 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
                 style={{display: show2&&!show1? "block":"none"}}
                 data-popper-reference-hidden=""
                 data-popper-escaped=""
