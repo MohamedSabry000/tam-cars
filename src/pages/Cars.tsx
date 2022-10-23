@@ -27,7 +27,7 @@ function Cars() {
       <h1 className="font-bold text-3xl">Booking</h1>
       <div className="">
         <div className="grid grid-cols-4 gap-5">
-          <div className="mb-3 mt-4 text-gray-500 col-span-2 align-middle">
+          <div className="mb-3 mt-4 text-gray-500 col-span-3 align-middle">
             <div className='relative inline-block'>
               <button
                 id="newBtn"
@@ -51,7 +51,7 @@ function Cars() {
               <button
                 id="dropdownAvatarNameButton"
                 data-dropdown-toggle="dropdownAvatarName"
-                className="flex pl-4 pr-4 ml-4 items-center bg-white p-2 text-sm font-medium text-gray-500 rounded-full hover:text-blue-600 dark:hover:text-blue-500 md:mr-0 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-white"
+                className="flex pl-4 pr-4 sm:ml-4 xs:ml-0 items-center bg-white p-2 text-sm font-medium text-gray-500 rounded-full hover:text-blue-600 dark:hover:text-blue-500 md:mr-0 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:text-white"
                 type="button"
                 onClick={_=> setShow2(prev => !prev)}
               >
@@ -87,12 +87,12 @@ function Cars() {
 
             </div>
           </div>
-          <div className="flex justify-end  col-span-2 align-middle">
+          <div className="flex justify-end  col-span-1 align-middle">
             <img src={Arrange1Icon} alt="" className="h-14" />
             <img src={FilterIcon} alt="" className="h-11" />
           </div>
         </div>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid lg:grid-cols-3 gap-4 md:grid-cols-2 sm:grid-cols-1">
             {
               data.map((car, index) => <CarCard car={car} key={index} />)
             }

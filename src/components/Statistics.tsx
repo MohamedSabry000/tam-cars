@@ -1,38 +1,23 @@
-import { useState } from 'react'
-import EnergyIcon from '../assets/statistics/energy.png'
-import FluidIcon from '../assets/statistics/fluid.png'
-import RangeIcon from '../assets/statistics/range.png'
-import TireIcon from '../assets/statistics/tire-wear.png'
+import { useState, useEffect } from 'react'
+import { CircularProgressbar, buildStyles  } from 'react-circular-progressbar';
 
-const statistics = [
-  {
-    icon:EnergyIcon,
-    title: "Energy",
-    range: '45%',
-  },
-  {
-    icon: RangeIcon,
-    title: "Range",
-    range: "157k%"
-  },
-  {
-    icon: FluidIcon,
-    title: "Break Fluid",
-    range: "9%"
-  },
-  {
-    icon: TireIcon,
-    title: "Tire Wear",
-    range: "25%"
-  }
-]
+import API from '../utils/getDataFromAPI'
+
+import 'react-circular-progressbar/dist/styles.css';
 
 function Statistics() {
+  const [data, setData] = useState([])
   const [clicked, setClicked] = useState(0)
+
+  useEffect(() => {
+    API.get('statistics').then(res => {
+      setData(res.data)
+    })
+  }, [])
   return (
     <div className="grid grid-cols-4 gap-5">
       {
-        statistics.map((stat: any, index: number) => {
+        data.map((stat: any, index: number) => {
           return (
             <div
             style={clicked === index? {background: "#A162F7", color: "#FFF"} : {}}
@@ -47,7 +32,17 @@ function Statistics() {
               <h3 className="font-bold text-lg mb-5">
                 {stat.title}
               </h3>
-
+              <div className="flex justify-center items-center p-10">
+              <CircularProgressbar 
+                value={stat.range} 
+                text={`${stat.range}%`} 
+                styles={buildStyles({ 
+                  rotation: 0.75, 
+                  pathColor: clicked === index? "#FFF" : stat.color,
+                  textColor: '#000',
+                })}
+              />
+              </div>
             </div>
           )
         })

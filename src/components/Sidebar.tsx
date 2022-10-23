@@ -21,7 +21,7 @@ const bottomLinks = [
 
 function Sidebar() {
   const isMobile = useMediaQuery({
-    query: "(max-width: 768px)",
+    query: "(max-width: 1043px)",
   });
 
   return (
@@ -56,7 +56,7 @@ function Sidebar() {
                   to={link.path}
                   className="flex items-center px-2 py-2 text-sm font-medium text-gray-900 rounded-md dark:text-gray-200 dark:hover:bg-gray-700 hover:bg-gray-100"
                 >
-                  <img src={link.icon} alt="icon" className="h-6 w-auto" />
+                  <img src={link.icon} alt="icon" className="h-6 w-auto mr-2" />
                   <span className="ml-2">{link.label}</span>
                 </Link>
               </li>
